@@ -22,38 +22,23 @@ tar xfz Plone-4.3.6-UnifiedInstaller.tgz
 
 cd Plone-4.3.6-UnifiedInstaller
 echo "installing (first pass)"
-./install.sh zeo --target=$HOME/workspace &
+./install.sh standalone --target=$HOME/workspace &
 spinner $!
 # the step above seems to only half install it so we brute force it a bit
 echo "installing (second pass)"
-cd $HOME/workspace/zeocluster
+cd $HOME/workspace/zinstance
 bin/buildout &
 spinner $!
 
-echo "let's install some convenience commands"
-wget https://gist.github.com/pigeonflight/6089807/download -O plonecommands.tgz 
-mkdir -p ~/bin
-tar xfz plonecommands.tgz
-cp `tar tfz plonecommands.tgz |head -1`plone* ~/bin/
-chmod +x ~/bin/plone*
-rm -rf `tar tfz plonecommands.tgz |head -1`
-rm plonecommands.tgz
-echo 'PATH=$PATH:$HOME/bin' >> ~/.bashrc
-echo 'export PATH' >> ~/.bashrc
-PATH=$PATH:$HOME/bin
-export PATH
 
 echo "***********************************"
 echo "**                               **"
 echo "** Plone on C9 install complete  **"
 echo "**                               **"
-echo "** the commands will not work in **"
-echo "**  this console. Close this     **"
-echo "**  console now and run:         **"
-echo "**                               **"
-echo "**     plone-start.sh            **"
-echo "**                               **"
-echo "**  in a newly opened console    **"
+echo "**  to launch plone              **"
+echo "**  run the following commands:  **"
+echo "**  cd $HOME/workspace/zinstance **"
+echo "**  bin/instance fg              **"
 echo "**                               **"
 echo "**                               **"
 echo "***********************************"
