@@ -1,3 +1,4 @@
+sudo apt-get install libxslt-dev libxml2-dev
 # spinner borrowed from http://fitnr.com/showing-a-bash-spinner.html
 
 spinner()
